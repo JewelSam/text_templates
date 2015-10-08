@@ -1,8 +1,8 @@
-require 'templates_repository'
+require 'mailing_templates_repository'
 
-RSpec.describe TemplatesRepository do
+RSpec.describe MailingTemplatesRepository do
 
-  templates_repository = TemplatesRepository.new
+  templates_repository = MailingTemplatesRepository.new
   
   describe '::put' do 
     context 'when template type and body are valid' do

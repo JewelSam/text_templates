@@ -1,6 +1,6 @@
 require 'not_found_error'
 
-class TemplatesRepository
+class MailingTemplatesRepository
   attr_accessor :templates
 
   def initialize
