@@ -6,7 +6,7 @@ class MailTokensExtractorFactory
     case type
     when MailingTemplate::CONFIRM_EMAIL
       ConfirmEmailTokensList.new
-    else 
+    else
       raise ArgumentError, "Invalid mailing template type provided"
     end
   end

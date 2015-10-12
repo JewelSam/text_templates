@@ -13,7 +13,7 @@ class MailingTemplatesRepository
 
   def put(template_type, template_body)
     # нельзя обработку ошибок делать здесь? отдельный класс? я не понимаю
-    raise ArgumentError, 'template type is blank' unless template_type 
+    raise ArgumentError, 'template type is blank' unless template_type
     raise ArgumentError, 'template body is blank' unless template_body
 
     @templates[template_type] = template_body

@@ -1,4 +1,4 @@
 class TokenType
   # это неправильно
-  String = 'string'    
+  String = 'string'
 end

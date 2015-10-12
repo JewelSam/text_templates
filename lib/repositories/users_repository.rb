@@ -12,7 +12,7 @@ class UsersRepository
   end
 
   def put(user_id, fio)
-    raise ArgumentError, 'user id is blank'   unless user_id 
+    raise ArgumentError, 'user id is blank'   unless user_id
     raise ArgumentError, 'user fio is blank'  unless fio
 
     @users[user_id] = {fio: fio}
