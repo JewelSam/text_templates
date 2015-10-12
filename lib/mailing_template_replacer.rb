@@ -1,5 +1,4 @@
 require 'token_presenter_factory'
-require 'token_presenters/string_token_presenter'
 
 class MailingTemplateReplacer
   def self.replace_tokens_in_email(body, tokens)
