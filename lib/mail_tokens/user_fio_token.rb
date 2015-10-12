@@ -21,4 +21,12 @@ class UserFioToken < MailToken
   def initialize(value = '')
     @value = value
   end
+
+  def self.prepare_token(options, repositories)
+    raise ArgumentError, 'user id is blank' unless options[:user_id]
+    raise ArgumentError, 'users repository is not found' unless repositories[:users]
+
+    user = repositories[:users].find(options[:user_id])
+    new(user[:fio])
+  end
 end
