@@ -1,4 +1,4 @@
-require 'mailing_templates_repository'
+require 'repositories/mailing_templates_repository'
 
 RSpec.describe MailingTemplatesRepository do
 
