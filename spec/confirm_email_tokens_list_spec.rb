@@ -13,11 +13,13 @@ RSpec.describe ConfirmEmailTokensList do
 
       subject(:mail_tokens_list) do
         repositories = {users: users_repository}
-        mail_tokens_list = confirm_email_tokens_list.prepare_tokens({user_id: 1}, repositories)
+        options = {user_id: 1, confirmation_link: 'http://example.com'}
+
+        mail_tokens_list = confirm_email_tokens_list.prepare_tokens(options, repositories)
       end
 
-      it 'should contain two tokens' do
-        expect(mail_tokens_list.length).to be(2)
+      it 'should contain three tokens' do
+        expect(mail_tokens_list.length).to be(3)
       end
 
       it 'should contain UserFioToken with value "fio"' do
