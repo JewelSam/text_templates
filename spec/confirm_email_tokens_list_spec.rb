@@ -6,13 +6,7 @@ RSpec.describe ConfirmEmailTokensList do
   confirm_email_tokens_list = ConfirmEmailTokensList.new
 
   users_repository = UsersRepository.new
-  users_repository.put(1, 'fio')
-
-  describe '::tokens_lists' do
-    it 'should include UserFioToken' do
-      expect(confirm_email_tokens_list.tokens_list).to include(UserFioToken)
-    end
-  end
+  users_repository.put(1, 'fio', 'from@example.com')
 
   describe '::prepare_tokens' do
     context 'when prepare tokens' do
@@ -22,14 +16,18 @@ RSpec.describe ConfirmEmailTokensList do
         mail_tokens_list = confirm_email_tokens_list.prepare_tokens({user_id: 1}, repositories)
       end
 
-      it 'should contain UserFioToken' do
-        # здесь встроенный matcher, что вроде как нехорошо и проверяется только первый элемент
-        # (т.е. если вставить второй - то тесты все равно пройдут)
-        expect(mail_tokens_list.first).to be_instance_of(UserFioToken)
+      it 'should contain two tokens' do
+        expect(mail_tokens_list.length).to be(2)
       end
 
       it 'should contain UserFioToken with value "fio"' do
-        expect(mail_tokens_list.first.value).to eq('fio')
+        user_fio_token = mail_tokens_list.find {|token| token.is_a?(UserFioToken)}
+        expect(user_fio_token.value).to eq('fio')
+      end
+
+      it 'should contain UserEmailToken with value "from@example.com"' do
+        user_email_token = mail_tokens_list.find {|token| token.is_a?(UserEmailToken)}
+        expect(user_email_token.value).to eq('from@example.com')
       end
 
     end
