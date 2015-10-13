@@ -7,8 +7,11 @@ RSpec.describe PromoCodesRepository do
   describe '::put' do
     context 'when attributes are valid' do
         it 'should add user to users repository' do
-            promo_codes_repository.put('code', 'value', 'start', 'finish')
-            expect(promo_codes_repository.collection['code']).to eq({value: 'value', start: 'start', finish: 'finish'})
+            promo_code_start = Date.today
+            promo_code_finish = promo_code_start + 15
+
+            promo_codes_repository.put('code', 'value', promo_code_start, promo_code_finish)
+            expect(promo_codes_repository.collection['code']).to eq({value: 'value', start: promo_code_start, finish: promo_code_finish})
         end
     end
 
