@@ -1,21 +1,13 @@
-require 'not_found_error'
+require 'repositories/repository'
 
-class PromoCodesRepository
-  attr_accessor :promo_codes
-
-  def initialize
-    @promo_codes = {}
-  end
-
-  def find(code)
-     @promo_codes[code] || raise(NotFoundError, 'Promo code is not found')
-  end
+class PromoCodesRepository < Repository
 
   def put(code, value, start, finish)
     raise ArgumentError, 'code is blank'              unless code
     raise ArgumentError, 'promo code value is blank'  unless value
 
-    @promo_codes[code] = {value: value, start: start, finish: finish}
+    # ничего, что мы здесь используем @collection, который определяем в классе Repository?
+    @collection[code] = {value: value, start: start, finish: finish}
   end
 
 end

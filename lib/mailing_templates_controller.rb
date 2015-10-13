@@ -6,7 +6,7 @@ class MailingTemplatesController
   # много аргументов, может, все-таки их нужно в хэш запихнуть?
   def confirm_email(template_type, user_id, confirmation_link, repositories)
 
-    template = repositories[:mailing_templates].find_by_type(template_type)
+    template = repositories[:mailing_templates].find(template_type)
 
     mail_tokens_extractor = MailTokensExtractorFactory.find_by_type(template_type)
 
