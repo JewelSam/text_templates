@@ -1,7 +1,15 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    addressable (2.3.8)
     diff-lcs (1.2.5)
+    launchy (2.4.3)
+      addressable (~> 2.3)
+    letter_opener (1.4.1)
+      launchy (~> 2.2)
+    mail (2.6.3)
+      mime-types (>= 1.16, < 3)
+    mime-types (2.6.2)
     rspec (3.3.0)
       rspec-core (~> 3.3.0)
       rspec-expectations (~> 3.3.0)
@@ -20,6 +28,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  letter_opener
+  mail
   rspec (~> 3.0)
 
 BUNDLED WITH

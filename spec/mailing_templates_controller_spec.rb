@@ -17,18 +17,20 @@ RSpec.describe MailingTemplatesController do
 
         template_type = 'confirm_email'
         user_id = 1
+        user_email = 'from@example.com'
         confirmation_link = 'http://example.com'
         repositories = {mailing_templates: templates_repository, users: users_repository}
 
         mailing_templates_controller = MailingTemplatesController.new
-        replaced_body = mailing_templates_controller.confirm_email(
+        mail = mailing_templates_controller.confirm_email(
           template_type,
           user_id,
+          user_email,
           confirmation_link,
           repositories
         )
 
-        expect(replaced_body).to eq('Здравствуйте, fio! Ваш e-mail from@example.com был указан при регистрации. ' +
+        expect(mail.html_part.body).to eq('Здравствуйте, fio! Ваш e-mail from@example.com был указан при регистрации. ' +
                 'Перейдите по <a href="http://example.com">ссылке</a> для подтверждения.')
 
         # почти полное повторение mailing_template_replacer_spec, что с этим делать?
@@ -56,6 +58,7 @@ RSpec.describe MailingTemplatesController do
 
         template_type = 'birthday_email'
         user_id = 1
+        user_email = 'from@example.com'
         promo_code = 'code'
         repositories = {
           mailing_templates: templates_repository,
@@ -64,14 +67,15 @@ RSpec.describe MailingTemplatesController do
         }
 
         mailing_templates_controller = MailingTemplatesController.new
-        replaced_body = mailing_templates_controller.birthday_email(
+        mail = mailing_templates_controller.birthday_email(
           template_type,
           user_id,
+          user_email,
           promo_code,
           repositories
         )
 
-        expect(replaced_body).to eq('Здравствуйте, fio! ' +
+        expect(mail.html_part.body).to eq('Здравствуйте, fio! ' +
                   'В этот замечательный день мы дарим вам скидку 1000 руб по промо-коду: ' +
                   'code. Скидка по промокоду будет действовать 15 дней.')
       end
