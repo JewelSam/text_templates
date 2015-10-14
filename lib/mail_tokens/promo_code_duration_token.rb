@@ -1,7 +1,7 @@
 require 'mail_tokens/mail_token'
 require 'token_type'
 
-class PromoCodePeriodToken < MailToken
+class PromoCodeDurationToken < MailToken
 
   def type
     TokenType::Duration
@@ -16,6 +16,6 @@ class PromoCodePeriodToken < MailToken
     raise ArgumentError, 'promo codes repository is not found' unless repositories[:promo_codes]
 
     promo_code = repositories[:promo_codes].find(options[:promo_code])
-    new(promo_code[:finish] - promo_code[:start])
+    new (promo_code[:finish] - promo_code[:start]).to_i
   end
 end
