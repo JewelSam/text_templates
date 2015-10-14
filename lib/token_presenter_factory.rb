@@ -5,6 +5,10 @@ class TokenPresenterFactory
     case token_type
     when TokenType::String
       StringTokenPresenter
+    when TokenType::Currency
+      CurrencyTokenPresenter
+    when TokenType::Duration
+      DurationTokenPresenter
     else
       raise ArgumentError, "Invalid token type provided"
     end
