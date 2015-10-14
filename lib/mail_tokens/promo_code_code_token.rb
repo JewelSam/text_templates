@@ -14,9 +14,7 @@ class PromoCodeCodeToken < MailToken
 
   def self.prepare_token(options, repositories)
     raise ArgumentError, 'promo code is blank' unless options[:promo_code]
-    raise ArgumentError, 'promo codes repository is not found' unless repositories[:promo_codes]
 
-    promo_code = repositories[:promo_codes].find(options[:promo_code])
-    new(promo_code[:code])
+    new(options[:promo_code])
   end
 end
