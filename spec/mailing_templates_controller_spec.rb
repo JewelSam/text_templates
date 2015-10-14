@@ -45,7 +45,7 @@ RSpec.describe MailingTemplatesController do
 
         body = 'Здравствуйте, %{user_fio}! ' +
                   'В этот замечательный день мы дарим вам скидку %{promo_code_value} по промо-коду: ' +
-                  '%{promo_code_code}. Скидка по промокоду будет действовать %{promo_code_duration}.'
+                  '%{promo_code}. Скидка по промокоду будет действовать %{promo_code_duration}.'
         templates_repository.put('birthday_email', body)
 
         users_repository = UsersRepository.new
